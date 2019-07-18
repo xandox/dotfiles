@@ -1,0 +1,69 @@
+call plug#begin('~/.vim/plugged')
+    
+   Plug 'vim-scripts/indentpython.vim'
+   Plug 'Valloric/YouCompleteMe' 
+   Plug 'nvie/vim-flake8'
+   Plug 'jnurmine/Zenburn'
+    
+call plug#end()
+
+" tabs
+let g:spaces_in_tab = 4
+let &tabstop=g:spaces_in_tab
+let &shiftwidth=g:spaces_in_tab
+let &softtabstop=g:spaces_in_tab
+set expandtab
+set smartindent
+set smarttab
+
+set fileformat=unix
+set textwidth=79
+
+
+" linenumbers
+set number
+
+" undo, swap and backup
+set undodir=~/.vim/undodir
+set directory=~/.vim/swapdir
+set backupdir=~/.vim/backupdir
+
+
+" Vim jump to the last position when reopening a file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
+" Vim load indentation rules and plugins according to the detected filetype.
+if has("autocmd")
+  filetype plugin indent on
+endif
+
+colorscheme zenburn
+
+
+" show the matching part of the pair for [] {} and ()
+set showmatch
+
+" show a visual line under the cursor's current line
+set cursorline
+
+" enable all Python syntax highlighting features
+let python_highlight_all=1
+
+
+" autocomplete
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" python virtualenv
+py3 << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
+
+
