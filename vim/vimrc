@@ -4,8 +4,14 @@ call plug#begin('~/.vim/plugged')
    Plug 'Valloric/YouCompleteMe' 
    Plug 'nvie/vim-flake8'
    Plug 'jnurmine/Zenburn'
+   Plug 'dag/vim-fish'
+   Plug 'cespare/vim-toml'
+   Plug 'rust-lang/rust.vim'
+   Plug 'NLKNguyen/papercolor-theme'
     
 call plug#end()
+
+set visualbell
 
 " tabs
 let g:spaces_in_tab = 4
@@ -18,6 +24,8 @@ set smarttab
 
 set fileformat=unix
 set textwidth=79
+
+set t_Co=256
 
 
 " linenumbers
@@ -39,7 +47,8 @@ if has("autocmd")
   filetype plugin indent on
 endif
 
-colorscheme zenburn
+set background=light
+colorscheme PaperColor
 
 
 " show the matching part of the pair for [] {} and ()
