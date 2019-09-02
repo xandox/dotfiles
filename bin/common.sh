@@ -5,6 +5,17 @@ function dotfile_dir() {
     echo "$dotfile_dir_name"
 }
 
+function do_symlink() {
+    local src="$1"
+    local dst="$2"
+    local dstdir=$(dirname $dst)
+    if [ ! -d "$dstdir" ]
+    then
+        mkdir -p "$dstdir"
+    fi
+    ln -s "$src" "$dst"
+}
+
 function install_link() {
     local dotfile_source="$1"
     local target_link="$2"
@@ -25,7 +36,7 @@ function install_link() {
         fi
         echo "$dst_file exsists. remove it first"
     else
-        ln -s "$src_file" "$dst_file"
+        do_symlink "$src_file" "$dst_file"
         echo "$src_file -> $dst_file linked."
     fi
 }
