@@ -1,11 +1,15 @@
 
+function dotfile_dir() {
+    local bin_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+    local dotfile_dir_name="$(realpath "$bin_dir/../")"
+    echo "$dotfile_dir_name"
+}
 
 function install_link() {
     local dotfile_source="$1"
     local target_link="$2"
-
-    local bin_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-    local src_file=$(realpath "$bin_dir/../$dotfile_source")
+    local base_dir=$(dotfile_dir)
+    local src_file=$(realpath "$base_dir/$dotfile_source")
     local dst_file=$target_link
 
     if [ -f $dst_file ]
@@ -25,3 +29,4 @@ function install_link() {
         echo "$src_file -> $dst_file linked."
     fi
 }
+
