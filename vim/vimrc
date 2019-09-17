@@ -1,14 +1,15 @@
 call plug#begin('~/.vim/plugged')
-    
+
    Plug 'vim-scripts/indentpython.vim'
-   Plug 'Valloric/YouCompleteMe' 
+   Plug 'Valloric/YouCompleteMe'
    Plug 'nvie/vim-flake8'
    Plug 'jnurmine/Zenburn'
    Plug 'dag/vim-fish'
    Plug 'cespare/vim-toml'
    Plug 'rust-lang/rust.vim'
    Plug 'NLKNguyen/papercolor-theme'
-    
+   Plug 'psf/black'
+
 call plug#end()
 
 set visualbell
@@ -23,7 +24,7 @@ set smartindent
 set smarttab
 
 set fileformat=unix
-set textwidth=79
+set textwidth=88
 
 set t_Co=256
 
@@ -80,4 +81,5 @@ EOF
 
 " remove trailing whitespaces
 autocmd BufWritePre * %s/\s\+$//e
+autocmd BufWritePre *.py execute ':Black'
 
