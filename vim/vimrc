@@ -9,6 +9,7 @@ call plug#begin('~/.vim/plugged')
    Plug 'rust-lang/rust.vim'
    Plug 'NLKNguyen/papercolor-theme'
    Plug 'psf/black'
+   Plug 'tikhomirov/vim-glsl'
 
 call plug#end()
 
@@ -24,7 +25,7 @@ set smartindent
 set smarttab
 
 set fileformat=unix
-set textwidth=88
+" set textwidth=88
 
 set t_Co=256
 
@@ -86,3 +87,6 @@ autocmd BufWritePre *.py execute ':Black'
 if has('gui_running')
     set guifont=JetBrains\ Mono\ 12
 endif
+
+"GLSL
+autocmd! BufNewFile,BufRead *.vs,*.fs set ft=glsl

@@ -16,6 +16,7 @@ set -gx OPTIX_INSTALL_DIR $HOME/local_root
 set -gx SSH_MONSTER xandox@deathstar.artec-local
 
 alias deathstar='ssh $SSH_MONSTER'
+alias trains='ssh artec@trains.artec-local'
 
 function mount-deathstar
     sshfs $SSH_MONSTER:/home/xandox/code $HOME/monster/code
